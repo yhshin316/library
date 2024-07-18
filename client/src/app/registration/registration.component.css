@@ -1,0 +1,25 @@
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Adjust as needed */
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Adjust as needed */
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="password"],
+  .form-group button {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="radio"] {
+    margin-right: 5px;
+  }

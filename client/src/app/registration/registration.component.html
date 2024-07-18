@@ -1,0 +1,19 @@
+<form #registrationForm="ngForm" (ngSubmit)="registration()" class="registration-form">
+    <div class="form-group">
+      <input name="username" [(ngModel)]="registrationModel.username" class="form-control" type="text" placeholder="Username">
+    </div>
+    <div class="form-group">
+      <input name="password" [(ngModel)]="registrationModel.password" class="form-control" type="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label>
+        <input type="radio" name="role" [(ngModel)]="registrationModel.role" value="Librarian"> Librarian
+      </label>
+      <label>
+        <input type="radio" name="role" [(ngModel)]="registrationModel.role" value="Customer"> Customer
+      </label>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-outline-success" type="submit">Register</button>
+    </div>
+  </form>

@@ -1,0 +1,48 @@
+<form #registrationForm="ngForm" (ngSubmit)="editBook()" class="registration-form">
+    <div>
+      <label>Title</label>
+      <input name="Title" [(ngModel)]="bookModel.title" class="form-control" type="text" placeholder="Title" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>Author</label>
+      <input name="Author" [(ngModel)]="bookModel.author" class="form-control" type="text" placeholder="Author" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>Publisher</label>
+      <input name="Publisher" [(ngModel)]="bookModel.publisher" class="form-control" type="text" placeholder="Publisher" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>Category</label>
+      <input name="Category" [(ngModel)]="bookModel.category" class="form-control" type="text" placeholder="Category" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>ISBN</label>
+      <input name="ISBN" [(ngModel)]="bookModel.isbn" class="form-control" type="text" placeholder="ISBN" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>PageCount</label>
+      <input name="PageCount" [(ngModel)]="bookModel.pageCount" class="form-control" type="number" placeholder="PageCount" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>Publication</label>
+      <input name="Publication" [(ngModel)]="bookModel.publication" class="form-control" type="date" placeholder="Publication" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>Description</label>
+      <input name="Description" [(ngModel)]="bookModel.description" class="form-control" type="text" placeholder="Description" [disabled]="account.currentUser()?.role!='Librarian'">
+    </div>
+    <div>
+      <label>Cover</label>
+      <br>
+      @if(account.currentUser()?.role=='Librarian'){
+      <input name="Cover" class="form-control" type="file" placeholder="Cover" (change)="onFileSelected($event)" [disabled]="account.currentUser()?.role!='Librarian'">
+      }
+      <img [src]="'data:image/png;base64,' + bookModel.cover" alt="Image" />
+    </div>
+    @if(account.currentUser()?.role=='Librarian'){
+      <div>
+        <button class="btn btn-outline-success float-left" type="submit">Edit Book</button>
+        <button class="btn btn-outline-success float-right" type="button" (click)="deleteBook()">Delete Book</button>
+      </div>
+    }
+  </form>

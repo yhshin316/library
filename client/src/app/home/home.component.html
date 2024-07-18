@@ -1,0 +1,54 @@
+<h1>Featured Books</h1>
+<div>
+  <label>Filter</label>
+  <input name="Search" style="width: 80%;" type="search" placeholder="Search" [(ngModel)]="searchText" (input)="filter()">
+  <select style="width: 10%;" [(ngModel)]="filterOption" (change)="filter()">
+    <option value="Title" selected>Title</option>
+    <option value="Author">Author</option>
+    <option value="Availability">Availability</option>
+  </select>
+</div>
+<br>
+<div>
+  <label>Sort</label>
+  <select style="width: 10%;" [(ngModel)]="sortOption" (change)="sort()">
+    <option value=""></option>
+    <option value="TitleAsc">Title Asc</option>
+    <option value="TitleDes">Title Des</option>
+    <option value="AuthorAsc">Author Asc</option>
+    <option value="AuthorDes">Author Des</option>
+    <option value="AvailabilityAsc">Availability Asc</option>
+    <option value="AvailabilityDes">Availability Des</option>
+  </select>
+</div>
+
+<br>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th style="width: 10%;">Author</th>
+        <th>Description</th>
+        <th style="width: 5%">View Detail</th>
+        @if(accountService.currentUser()?.username!=null){
+          <th style="width: 5%">Check Out</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+        @for(book of filteredList; track $index){
+        <tr>
+            <td><img [src]="'data:image/png;base64,' + book.cover" alt="Image"/></td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.description }}</td>
+            <td><button (click)="bookDetails(book.id)">View Details</button></td>
+            @if(book.username==null && accountService.currentUser()?.username!=null){
+              <td><button (click)="checkOut(book.id)">Check Out</button></td>
+            }
+        </tr>
+        }
+    </tbody>
+  </table>

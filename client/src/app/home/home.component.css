@@ -1,0 +1,18 @@
+.center-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.table td, .table th {
+  vertical-align: top;
+  white-space: normal;
+  border: 1px solid black;
+  padding: 8px;
+}

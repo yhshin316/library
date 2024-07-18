@@ -1,0 +1,41 @@
+<form [formGroup]="bookForm" (ngSubmit)="addBook()" class="registration-form">
+    <div>
+      <label>Title</label>
+      <input name="Title" formControlName="title" class="form-control" type="text" placeholder="Title">
+    </div>
+    <div>
+      <label>Author</label>
+      <input name="Author" formControlName="author" class="form-control" type="text" placeholder="Author">
+    </div>
+    <div>
+      <label>Publisher</label>
+      <input name="Publisher" formControlName="publisher" class="form-control" type="text" placeholder="Publisher">
+    </div>
+    <div>
+      <label>Category</label>
+      <input name="Category" formControlName="category" class="form-control" type="text" placeholder="Category">
+    </div>
+    <div>
+      <label>ISBN</label>
+      <input name="ISBN" formControlName="isbn" class="form-control" type="text" placeholder="ISBN">
+    </div>
+    <div>
+      <label>PageCount</label>
+      <input name="PageCount" formControlName="pageCount" class="form-control" type="number" placeholder="PageCount">
+    </div>
+    <div>
+      <label>Publication</label>
+      <input name="Publication" formControlName="publication" class="form-control" type="date" placeholder="Publication">
+    </div>
+    <div>
+      <label>Description</label>
+      <input name="Description" formControlName="description" class="form-control" type="text" placeholder="Description">
+    </div>
+    <div>
+      <label>Cover</label>
+      <input name="Cover" class="form-control" type="file" placeholder="Cover" (change)="onFileSelected($event)">
+    </div>
+    <div>
+      <button class="btn btn-outline-success" type="submit">Register Book</button>
+    </div>
+  </form>

@@ -1,0 +1,43 @@
+<div>
+  <form #registrationForm="ngForm" (ngSubmit)="search()" class="registration-form">
+    <input name="Search" class="form-control" type="search" placeholder="Search" [(ngModel)]="searchText">
+    <button class="btn btn-outline-success float-left" type="submit">search</button>
+  </form>
+</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th style="width: 10%;">Author</th>
+        <th>Description</th>
+        <th style="width: 5%">View Detail</th>
+        <th style="width: 5%">Check Out</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for(book of bookList; track $index){
+        <tr>
+            <td><img [src]="'data:image/png;base64,' + book.cover" alt="Image"/></td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.description }}</td>
+            <td><button (click)="bookDetails(book.id)">View Details</button></td>
+            @if(book.username==null && account.currentUser()?.username!=null){
+              <td><button (click)="checkOut(book.id)">Check Out</button></td>
+            }
+            @if(book.username!=null && account.currentUser()?.username!=null && account.currentUser()?.role=="Librarian"){
+              <td><button (click)="checkIn(book.id)">Check In</button></td>
+            }
+        </tr>
+        }
+    </tbody>
+  </table>
+  <div class="center-container">
+    @if(page>1){
+      <button (click)="previous()">previous</button>
+    }
+    <input name="page" [(ngModel)]="page" type="number" placeholder="Page Number" (change)="goToPage()">
+    @if(bookList.length==5){
+      <button (click)="next()">next</button>
+    }
