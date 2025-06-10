@@ -58,6 +58,7 @@ export class AddBooksComponent {
     this.AddBooksService.addBook(command).subscribe({
       next: response => {
         console.log(response);
+        alert("Book added")
       },
       error: error => console.log(error)
     })

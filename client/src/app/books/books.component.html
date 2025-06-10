@@ -1,24 +1,18 @@
-<div>
-  <form #registrationForm="ngForm" (ngSubmit)="search()" class="registration-form">
-    <input name="Search" class="form-control" type="search" placeholder="Search" [(ngModel)]="searchText">
-    <button class="btn btn-outline-success float-left" type="submit">search</button>
-  </form>
-</div>
 <table class="table">
     <thead>
       <tr>
         <th>Cover</th>
         <th>Title</th>
-        <th style="width: 10%;">Author</th>
+        <th>Author</th>
         <th>Description</th>
-        <th style="width: 5%">View Detail</th>
-        <th style="width: 5%">Check Out</th>
+        <th>View Detail</th>
+        <th>Check Out</th>
       </tr>
     </thead>
     <tbody>
         @for(book of bookList; track $index){
         <tr>
-            <td><img [src]="'data:image/png;base64,' + book.cover" alt="Image"/></td>
+            <td><img [src]="'data:image/png;base64,' + book.cover" class="book-cover-img" alt="Book Cover"/></td>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.description }}</td>
@@ -32,12 +26,4 @@
         </tr>
         }
     </tbody>
-  </table>
-  <div class="center-container">
-    @if(page>1){
-      <button (click)="previous()">previous</button>
-    }
-    <input name="page" [(ngModel)]="page" type="number" placeholder="Page Number" (change)="goToPage()">
-    @if(bookList.length==5){
-      <button (click)="next()">next</button>
-    }
+</table>

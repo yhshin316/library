@@ -1,18 +1,22 @@
-.center-container {
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-}
-
-.table {
-  width: 100%;
-  table-layout: fixed;
-  word-wrap: break-word;
-}
-
+/* In your .table td, .table th section */
 .table td, .table th {
-  vertical-align: top;
-  white-space: normal;
-  border: 1px solid black;
-  padding: 8px;
+    vertical-align: top;
+    white-space: normal;
+    border: 1px solid black;
+    padding: 8px; /* Default padding */
+}
+
+/* Add a specific style for the image column's cell */
+.table td:first-child { /* Targets the first <td> in each row (your Cover column) */
+    width: 90px; /* Give the cell a bit more space than the image itself (80px + padding) */
+    text-align: center; /* Center the image within its cell */
+    padding: 5px; /* Adjust padding if needed */
+}
+
+.book-cover-img {
+    width: 160px;
+    height: 200px;
+    object-fit: contain; /* <--- Change from 'cover' to 'contain' */
+    display: block;
+    margin: 0 auto;
 }

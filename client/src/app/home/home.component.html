@@ -40,7 +40,7 @@
     <tbody>
         @for(book of filteredList; track $index){
         <tr>
-            <td><img [src]="'data:image/png;base64,' + book.cover" alt="Image"/></td>
+            <td><img [src]="'data:image/png;base64,' + book.cover" class="book-cover-img" alt="Image"/></td>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.description }}</td>

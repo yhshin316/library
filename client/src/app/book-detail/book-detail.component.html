@@ -37,7 +37,7 @@
       @if(account.currentUser()?.role=='Librarian'){
       <input name="Cover" class="form-control" type="file" placeholder="Cover" (change)="onFileSelected($event)" [disabled]="account.currentUser()?.role!='Librarian'">
       }
-      <img [src]="'data:image/png;base64,' + bookModel.cover" alt="Image" />
+      <img [src]="'data:image/png;base64,' + bookModel.cover" class="book-cover-img" alt="Image" />
     </div>
     @if(account.currentUser()?.role=='Librarian'){
       <div>

@@ -15,104 +15,104 @@ import { AccountService } from '../_services/account.service';
 })
 export class BooksComponent implements OnInit {
 
-  bookList:any[]=[];
+  bookList: any[] = [];
   bookService = inject(BooksService);
   account = inject(AccountService);
   param = inject(ActivatedRoute);
   router = inject(Router)
-  page:any;
-  searchText:string="";
-  
+  page: any;
+  searchText: string = "";
+
 
   ngOnInit(): void {
     this.reload();
   }
 
-  reload(){
+  reload() {
     this.param.paramMap.subscribe(params => {
       this.page = params.get('page');
     });
 
     this.bookList = this.bookService.getBooks(this.page).subscribe({
       next: (response: any) => {
-        this.bookList=response;
+        this.bookList = response;
       },
       error: (error: any) => console.log(error)
     });
   }
 
   bookDetails(id: number) {
-    this.router.navigateByUrl('/bookDetails/'+id);
+    this.router.navigateByUrl('/bookDetails/' + id);
   }
 
-  checkIn(id:number) {
+  checkIn(id: number) {
     this.bookService.checkIn(id).subscribe({
       next: (response: any) => {
         console.log(response);
-        this.bookList=response;
+        this.bookList = response;
       },
       error: (error: any) => console.log(error)
     });
   }
-    
-  checkOut(id:number) {
+
+  checkOut(id: number) {
     this.bookService.checkOut(id).subscribe({
       next: (response: any) => {
         console.log(response);
-        this.bookList=response;
+        this.bookList = response;
       },
       error: (error: any) => console.log(error)
     });
   }
 
-    next(){
-      this.page++;
-      this.router.navigateByUrl('/books/'+this.page);
-      this.bookList = this.bookService.getBooks(this.page).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.bookList=response;
-        },
-        error: (error: any) => console.log(error)
-      });
-    }
+  next() {
+    this.page++;
+    this.router.navigateByUrl('/books/' + this.page);
+    this.bookList = this.bookService.getBooks(this.page).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.bookList = response;
+      },
+      error: (error: any) => console.log(error)
+    });
+  }
 
-    previous(){
-      this.page--;
-      this.router.navigateByUrl('/books/'+this.page);
-      this.bookList = this.bookService.getBooks(this.page).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.bookList=response;
-        },
-        error: (error: any) => console.log(error)
-      });
-    }
+  previous() {
+    this.page--;
+    this.router.navigateByUrl('/books/' + this.page);
+    this.bookList = this.bookService.getBooks(this.page).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.bookList = response;
+      },
+      error: (error: any) => console.log(error)
+    });
+  }
 
-    goToPage() {
-      this.router.navigateByUrl('/books/'+this.page);
-      this.bookList = this.bookService.getBooks(this.page).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.bookList=response;
-        },
-        error: (error: any) => console.log(error)
-      });
-      }
+  goToPage() {
+    this.router.navigateByUrl('/books/' + this.page);
+    this.bookList = this.bookService.getBooks(this.page).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.bookList = response;
+      },
+      error: (error: any) => console.log(error)
+    });
+  }
 
-    search(){
-      if(this.searchText==""){
-        this.reload();
-      }else{
-        console.log(this.searchText);
+  search() {
+    if (this.searchText == "") {
+      this.reload();
+    } else {
+      console.log(this.searchText);
       this.bookService.search(this.searchText).subscribe({
         next: (response: any) => {
           console.log(response);
-          this.bookList=response;
+          this.bookList = response;
         },
         error: (error: any) => console.log(error)
       });
-      }
     }
+  }
 
 }
