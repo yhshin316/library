@@ -118,6 +118,15 @@ namespace WebApplication1.Controllers
             return Ok(books);
         }
 
+        [HttpGet("UserBooks/{username}")]
+        public async Task<ActionResult<Book>> UserBooks(string username)
+        {
+            if (username == null || username.Equals("")) { return BadRequest("Invalid user"); }
+            var checkOutedBooks = await context.Books.Where(book => book.Username.Contains(username)).ToListAsync();
+
+            return Ok(checkOutedBooks);
+        }
+
         [HttpGet("GetRandomBooks")]
         public async Task<ActionResult<IEnumerable<Book>>> GetRandomBooks(int count)
         {

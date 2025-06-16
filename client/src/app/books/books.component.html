@@ -20,9 +20,9 @@
             @if(book.username==null && account.currentUser()?.username!=null){
               <td><button (click)="checkOut(book.id)">Check Out</button></td>
             }
-            @if(book.username!=null && account.currentUser()?.username!=null && account.currentUser()?.role=="Librarian"){
+            <!-- @if(book.username!=null && account.currentUser()?.username!=null && account.currentUser()?.role=="Librarian"){
               <td><button (click)="checkIn(book.id)">Check In</button></td>
-            }
+            } -->
         </tr>
         }
     </tbody>

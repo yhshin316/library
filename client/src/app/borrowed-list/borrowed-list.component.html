@@ -1,0 +1,33 @@
+@if(account.currentUser()?.username!=null && account.currentUser()?.role=="Librarian"){
+  <label>Borrower</label>
+  <input name="Search" style="width: 80%;" type="search" placeholder="Borrower Username" [(ngModel)]="user"
+    (input)="searchUser()">
+  }
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Description</th>
+        <th>View Detail</th>
+        <th>Check In</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(book of bookList; track $index){
+      <tr>
+        <td><img [src]="'data:image/png;base64,' + book.cover" class="book-cover-img" alt="Book Cover" /></td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.description }}</td>
+        <td><button (click)="bookDetails(book.id)">View Details</button></td>
+
+        @if(book.username!=null && account.currentUser()?.username!=null && account.currentUser()?.role=="Librarian"){
+        <td><button (click)="checkIn(book.id)">Check In</button></td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>

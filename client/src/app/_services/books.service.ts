@@ -20,6 +20,10 @@ export class BooksService {
     return this.http.get(`${this.baseUrl}GetRandomBooks`)
   }
 
+  getBorrowedBooks(username:string): any {
+    return this.http.get(`${this.baseUrl}UserBooks/${username}`)
+  }
+
   checkOut(id:number) {
     this.data.username = this.account.currentUser()?.username;
     this.data.id = id;

@@ -63,6 +63,8 @@ export class BooksComponent implements OnInit {
       },
       error: (error: any) => console.log(error)
     });
+
+    this.reload();
   }
 
   next() {
